@@ -1,0 +1,284 @@
+/* Restablecer estilos básicos */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Estilos para el Canvas de fondo */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1; /* Hacemos el canvas más sutil para la nueva paleta de colores */
+}
+
+/* Contenedor principal de la aplicación */
+.main-container {
+    color: #E8EBF0; /* Texto principal claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #2D3A4F; /* Nuevo fondo gris oscuro */
+    padding: 2rem;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* Títulos */
+.title {
+    font-size: 2.8rem;
+    color: #E8EBF0; /* Color cambiado a blanco */
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #A3B5C0; /* Nuevo color de texto secundario */
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Estilo de la tarjeta principal */
+.card {
+    background-color: #3B4B61; /* Nuevo fondo más oscuro que el contenedor principal */
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Sombra más pronunciada en fondo oscuro */
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Sección de correo electrónico */
+.email-section {
+    background-color: #3B4B61; /* Fondo oscuro */
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #4B5A6F; /* Borde sutil */
+}
+
+.email-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #4B5A6F; /* Fondo de campo de entrada más oscuro */
+    border: 1px solid #4B5A6F;
+    border-radius: 8px;
+    color: #E8EBF0;
+    font-size: 1rem;
+    text-align: left;
+    transition: border-color 0.3s ease;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #4DB6AC; /* Resalta el borde con el nuevo color de acento */
+}
+
+.email-input::placeholder {
+    color: #A3B5C0;
+}
+
+/* Estilos para la navegación por pestañas */
+.tab-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background-color: #2D3A4F; /* Fondo de las pestañas gris oscuro */
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    padding: 0.25rem;
+}
+
+.tab-button {
+    padding: 0.7rem 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: #A3B5C0; /* Texto secundario */
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.tab-button:hover:not(.active) {
+    background-color: #3B4B61;
+}
+
+.tab-button.active {
+    background-color: #4DB6AC; /* Color de acento para la pestaña activa */
+    color: #2D3A4F; /* Texto oscuro para contraste */
+}
+
+/* Nuevo estilo para el botón de consultar */
+.tab-button.consult-button {
+    background-color: #4DB6AC !important; /* Nuevo color verde azulado */
+    color: #2D3A4F !important; /* Texto oscuro para contraste */
+}
+
+/* Contenido de cada pestaña */
+.tab-content {
+    padding-top: 1rem;
+}
+
+/* Estilos para las secciones de entrada (ej. cantidad, ID de orden) */
+.input-section {
+    background-color: #3B4B61; /* Fondo oscuro */
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid #4B5A6F; /* Borde sutil */
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-input-container {
+    flex-grow: 1;
+    position: relative;
+}
+
+.main-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #E8EBF0;
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    text-align: left;
+    border-bottom: 1px solid #4B5A6F; /* Línea inferior sutil */
+}
+
+.main-input::placeholder {
+    color: #A3B5C0;
+}
+
+/* Estilos para el selector de moneda (botón USDC) */
+.currency-selector-button {
+    background-color: #2D3A4F; /* Fondo del botón gris oscuro */
+    color: #E8EBF0; /* Texto claro */
+    border: 1px solid #4B5A6F;
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Icono de USDC como fondo de imagen */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjY0MCIgdmlld0JveD0iMCAwIDY0MCA2NDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjMyMCIgcj0iMzIwIiBmaWxsPSIjMTk2NEZGIi8+CjxwYXRoIGQ9Ik0yMDAuMDQzIDIwMC4wNDJDMTg4Ljg3NyAyMTEuMjExIDE4Ni4zNjQgMjMwLjU3MyAxOTMuNDcgMjQxLjczMkMxNjYuODI4IDI0OS4xNDYgMTQ2LjEyMiAyNzMuMjE4IDE0MC4wNDMgMzAwLjA0MkMxNDYuMTIyIDMyNi44NzIgMTY2LjgyOCAzNTEuNTQ0IDE5My40NyAzNTguOTQ4QzE4Ni4zNjQgMzcwLjExNyAxODguODc3IDM4OS40NzkgMjAwLjA0MyA0MDAuNjQ4QzIxMS4yMTIgMzg5LjQ0OSAyMzMuNjI0IDM3MC4xMTcgMjQwLjczIDM1OC45NDhDMjY3LjM3MiAzNTEuNTQ0IDI4Ny45MjMgMzI2LjYyIDI5Mi4wMjIgMzAwLjA0MkMyODcuOTIzIDI3My4yMTggMjY3LjM3MiAyNDkuMTQ2IDI0MC43MyAyNDEuNzQyQzIzMy42MjQgMjMwLjU3MyAyMTEuMjEyIDIxMS4yMTEgMjAwLjA0MyAyMDAuMDQyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ0MC4wNDMgMjAwLjA0MkMxMjguODc3IDIxMS4yMTEgNDI2LjM2NCAyMzAuNTczIDQzMy40NyAyNDEuNzQyQzQwNi44MjggMjQ5LjE0NiAzODYuMTIyIDI3My4yMTggMzgwLjA0MyAzMDAuMDQyQzM2Ni4xMjIgMzI2LjY3MiA0MDYuODI4IDM1MS41NDQgNDMzLjQ3IDM1OC42ODhDNjI2LjM2NCAzNzAuMTE3IDQyOC44NzcgMzg5LjQ3OSA0NDAuMDQzIDQwMC42NDhDNDUxLjIxMiAzODkuNDc5IDQ3My42MjQgMzcwLjExNyA0ODAuNzMgMzU4Ljk0OUM1MDcuMzcyIDM1MS41NDQgNTI3Ljc4MiAzMjYuNjIgNTMyLjAyMiAzMDAuMDQyQzUwNy45MjMgMjczLjIxOCA1MDcuMzczIDI0OS4xNDYgNDgwLjczIDI0MS41NDJDNjczLjMyNCAyMzAuNTczIDQ1MS4yMTIgMjExLjIxMSA0NDAuMDQzIDIwMC4wNDJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNODIwIDIzMy40NTdWNTQ0Ljg3NEMxOTIuNTcyIDI0NC41NzQgMTQwLjIzOSAyNjYuMDc2IDEyNi4wNjMgMzAwLjA0MkMxNDAuMjM5IDMzNC4wMDggMTkyLjU3MiAzNTUuMjA5IDMyMCAzNTUuMjA5VjMzNi42MjZDMjQwLjkzNCAzMzYuNjI2IDE5My45MjcgMzE5LjgzMiAxODEuMDUyIDMwMC4wNDJDMjcwLjk1NiAyODUuNjQ2IDI0MC42MzQgMjYzLjQ1NyAzMjAgMjYzLjQ1N1oiIGZpbGw9IiMyRDJEMkQiLz4KPHBhdGggZD0iTTMyMCAzODcuMTc0VjQwNS43NTdDNDQ3LjQyOCA0MDUuNTcgNDk5Ljc2MSAzODQuNTU1IDQ1My42MzcgMzAwLjA0MkM0OTkuNjYxIDI2NS41MyA0NDcuNDI4IDI0NC4zMyAzMjAgMjQ0LjMzVjI2My4wMDRDMzkwLjA2NiAyNjMuMDA0IDQ0Ni4wNzMgMzE5LjgzMiA0NTguNDQ4IDMwMC4wNDJDNjQ2LjA3MyAyODUuMjUzIDM5OS4wNjYgMjYzLjAwNCAzMjAgMjYzLjAwNFoiIGZpbGw9IiMyRDJEMkQiLz4KPC9zdmc+Cg==');
+    background-repeat: no-repeat;
+    background-position: 0.7em center;
+    background-size: 24px 24px;
+    padding-left: 3em;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+/* Estilos para la flecha de dropdown dentro del selector de moneda */
+.currency-selector-button::after {
+    content: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpolygon%20fill%3D%22#E8EBF0%22%20points%3D%22208.5%2C77.5%20128%2C158%2047.5%2C77.5%2031.5%2C93.5%20128%2C190%20224.5%2C93.5%20208.5%2C77.5%22%2F%3E%3C%2Fsvg%3E'); /* Cambia el color de la flecha a un gris claro */
+    display: inline-block;
+    width: 0.65em;
+    height: 0.65em;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Estilo para el botón de acción principal */
+.action-button {
+    background-color: #4DB6AC; /* Nuevo color verde azulado */
+    color: #2D3A4F; /* Texto oscuro para contraste */
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-top: 1rem;
+}
+
+.action-button:not(:disabled):hover {
+    background-color: #388E88; /* Tono más oscuro al pasar el ratón */
+}
+
+.action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Mensaje de hash de transacción */
+.tx-message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #A3B5C0;
+}
+
+.tx-message a {
+    color: #4DB6AC; /* Nuevo color del enlace */
+    text-decoration: none;
+}
+
+.tx-message a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #A3B5C0;
+    z-index: 1;
+}
+
+/* Contenedor para el ConnectButton de RainbowKit */
+.connect-button-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+}
+
+.deal-info h3 {
+    color: #4DB6AC;
+    margin-bottom: 0.5rem;
+}
+
+.deal-info p {
+    color: #A3B5C0;
+    margin-bottom: 0.2rem;
+}
