@@ -18,6 +18,11 @@ import {
   rainbowWallet,
   coinbaseWallet,
   walletConnectWallet,
+  trustWallet,
+  rabbyWallet,
+  phantomWallet,
+  zerionWallet,
+  braveWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -56,6 +61,11 @@ const connectors = connectorsForWallets([
     groupName: 'Recomendadas',
     wallets: [
       metaMaskWallet({ projectId, chains }),
+      trustWallet({ chains, projectId }),
+      zerionWallet({ chains, projectId }),
+      rabbyWallet({ chains, projectId }),
+      phantomWallet({ chains, projectId }),
+      braveWallet({ chains, projectId }),
       rainbowWallet({ projectId, chains }),
       coinbaseWallet({ appName: 'Abi.dil', chains }),
       walletConnectWallet({ projectId, chains }),
